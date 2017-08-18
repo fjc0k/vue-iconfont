@@ -1,0 +1,30 @@
+{
+  "name": "vue-iconfont",
+  "version": "1.0.0",
+  "description": "iconfont.cn --> symbol引用 --> vue组件",
+  "main": "dist/vue-iconfont.common.js",
+  "module": "dist/vue-iconfont.es.js",
+  "browser": "dist/vue-iconfont.js",
+  "homepage": "https://github.com/fjc0k/vue-iconfont#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fjc0k/vue-iconfont.git"
+  },
+  "keywords": [
+    "vue",
+    "component",
+    "icon",
+    "font"
+  ],
+  "author": {
+    "name": "Funch",
+    "email": "fjc0kb@gmail.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "bili src/index.js --format all --compress"
+  },
+  "devDependencies": {
+    "bili": "^0.17.4"
+  }
+}
