@@ -23,6 +23,9 @@ import 'vue-iconfont/style/icon.css'; // 样式文件
 import vueIconfont from 'vue-iconfont'; // icon 组件
 
 Vue.use(vueIconfont);
+// 或者
+Vue.component('icon', vueIconfont);
+
 ```
 
 ```html
