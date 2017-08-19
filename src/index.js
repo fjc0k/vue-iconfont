@@ -1,7 +1,7 @@
 import icon from './icon';
 
 icon.install = function(Vue, { label = 'icon' } = {}) {
-  if (install.installed) return;
+  if (icon.install.installed) return;
   Vue.components(label, icon);
 };
 
