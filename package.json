@@ -1,6 +1,6 @@
 {
   "name": "vue-iconfont",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "iconfont.cn --> symbol引用 --> vue组件",
   "main": "dist/vue-iconfont.common.js",
   "module": "dist/vue-iconfont.es.js",
