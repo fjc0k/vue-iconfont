@@ -1,8 +1,12 @@
 import icon from './icon';
 
+const installed = [];
+
 icon.install = function(Vue, { label = 'icon' } = {}) {
-  if (icon.install.installed) return;
-  Vue.component(label, icon);
+  if (installed.indexOf(label) === -1) {
+    Vue.component(label, icon);
+    installed.push(label);
+  }
 };
 
 // auto install

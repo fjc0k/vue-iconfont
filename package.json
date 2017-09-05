@@ -1,7 +1,7 @@
 {
   "name": "vue-iconfont",
   "version": "1.0.7",
-  "description": "iconfont.cn --> symbol引用 --> vue组件",
+  "description": "iconfont.cn --> Symbol引用(SVG字体) --> Vue组件",
   "main": "dist/vue-iconfont.common.js",
   "module": "dist/vue-iconfont.es.js",
   "browser": "dist/vue-iconfont.js",
@@ -22,9 +22,15 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "bili src/index.js --format all --compress"
+    "build": "bili src/index.js --format all --compress",
+    "test": "cross-env BABEL_ENV=test jest --env jsdom"
   },
   "devDependencies": {
-    "bili": "^0.17.4"
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "bili": "^0.17.4",
+    "cross-env": "^5.0.5",
+    "jest": "^21.0.1",
+    "vue": "^2.4.2"
   }
 }

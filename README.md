@@ -1,6 +1,6 @@
 # vue-iconfont
 
-iconfont.cn --> symbol引用 --> vue组件
+iconfont.cn --> Symbol引用(SVG字体) --> Vue组件
 
 ## 如何使用
 
