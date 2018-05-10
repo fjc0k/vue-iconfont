@@ -17,7 +17,7 @@ test('默认选项正确', () => {
   assertHTML(
     '<icon name="ok" />',
     null,
-    `<i class="${FONT_ICON_CLASSNAME}icon icon icon-ok"></i>`
+    `<i class="${FONT_ICON_CLASSNAME} icon icon-ok"></i>`
   )
 })
 
@@ -25,7 +25,7 @@ test('正确设置 tag', () => {
   assertHTML(
     '<fa-icon name="ok" />',
     { tag: 'fa-icon' },
-    `<i class="${FONT_ICON_CLASSNAME}icon icon icon-ok"></i>`
+    `<i class="${FONT_ICON_CLASSNAME} icon icon-ok"></i>`
   )
 })
 
@@ -33,7 +33,7 @@ test('正确设置 prefix', () => {
   assertHTML(
     '<fa-icon name="ok" />',
     { tag: 'fa-icon', prefix: 'fa-icon' },
-    `<i class="${FONT_ICON_CLASSNAME}fa-icon fa-icon fa-icon-ok"></i>`
+    `<i class="${FONT_ICON_CLASSNAME} fa-icon fa-icon-ok"></i>`
   )
 })
 
