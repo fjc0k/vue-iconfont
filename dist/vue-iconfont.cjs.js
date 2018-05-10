@@ -1,5 +1,5 @@
 /*!
- * vue-iconfont v2.0.1
+ * vue-iconfont v2.1.0
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
@@ -44,6 +44,7 @@ var getIcon = (function (_temp) {
   var _ref = _temp === void 0 ? {} : _temp,
       _ref$prefix = _ref.prefix,
       defaultPrefix = _ref$prefix === void 0 ? 'icon' : _ref$prefix,
+      defaultFamily = _ref.family,
       _ref$type = _ref.type,
       defaultType = _ref$type === void 0 ? FONT_ICON : _ref$type;
 
@@ -52,6 +53,10 @@ var getIcon = (function (_temp) {
     functional: true,
     props: {
       name: String,
+      family: {
+        type: String,
+        default: defaultFamily
+      },
       prefix: {
         type: String,
         default: defaultPrefix
@@ -70,6 +75,8 @@ var getIcon = (function (_temp) {
           _ref2$props = _ref2.props,
           name = _ref2$props.name,
           prefix = _ref2$props.prefix,
+          _ref2$props$family = _ref2$props.family,
+          family = _ref2$props$family === void 0 ? prefix : _ref2$props$family,
           type = _ref2$props.type;
       if (!name) return null; // font-class 引用
 
@@ -88,7 +95,7 @@ var getIcon = (function (_temp) {
         }
 
         return h('i', extendData(data, {
-          staticClass: FONT_ICON_CLASSNAME + " " + prefix + " " + prefix + "-" + name
+          staticClass: FONT_ICON_CLASSNAME + " " + family + " " + prefix + "-" + name
         }));
       } // 插入 SVG 字体的样式
 
