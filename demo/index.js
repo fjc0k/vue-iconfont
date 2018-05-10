@@ -8,6 +8,9 @@ import './iconfont/iconfont.css'
 // 引入上面下载得到的使用 SVG 图标必须的 js 文件
 import './iconfont/iconfont.js'
 
+// 引入 fontawesome5
+import './fontawesome5/css/fontawesome-all.css'
+
 Vue.use(VueIconfont, [
   // 定义 v-icon 组件以使用 font-class 图标
   {
@@ -21,6 +24,11 @@ Vue.use(VueIconfont, [
     tag: 'v-svg-icon',
     prefix: 'v-icon',
     type: 'svg'
+  },
+
+  {
+    tag: 'fa-icon',
+    prefix: 'fa'
   }
 ])
 
