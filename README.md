@@ -44,7 +44,7 @@ Vue.use(VueIconfont/*, options*/)
 --- | --|--|--
 tag | `String` | `icon` | 图标组件的标签。
 type | `font` &#124; `svg` | `font` | `font`：表示用 font-class 引入的字体图标。<br />`svg`：表示用 symbol 引入的 SVG 图标。
-prefix | `String` | `icon` | 如果 `type` 为 `font`，`prefix` 表示图标字体的 `font-family` 和类名前缀。<br />如果 `type` 为 `svg`，`prefix` 表示 SVG 图标名称前缀。
+prefix | `String` | `icon` | 表示类名前缀或 SVG 图标名称前缀。
 
 
 ## 完整实例
