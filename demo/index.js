@@ -29,6 +29,12 @@ Vue.use(VueIconfont, [
   {
     tag: 'fa-icon',
     prefix: 'fa'
+  },
+
+  {
+    tag: 'fab-icon',
+    family: 'fab',
+    prefix: 'fa'
   }
 ])
 

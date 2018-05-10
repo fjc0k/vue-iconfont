@@ -7,6 +7,7 @@ let svgIconStyleInjected = false
 
 export default ({
   prefix: defaultPrefix = 'icon',
+  family: defaultFamily,
   type: defaultType = FONT_ICON
 } = {}) => ({
   name: 'Icon',
@@ -15,6 +16,10 @@ export default ({
 
   props: {
     name: String,
+    family: {
+      type: String,
+      default: defaultFamily
+    },
     prefix: {
       type: String,
       default: defaultPrefix
@@ -26,7 +31,7 @@ export default ({
     }
   },
 
-  render(h, { parent, data, props: { name, prefix, type } }) {
+  render(h, { parent, data, props: { name, prefix, family = prefix, type } }) {
     if (!name) return null
 
     // font-class 引用
@@ -46,7 +51,7 @@ export default ({
       return h(
         'i',
         extendData(data, {
-          staticClass: `${FONT_ICON_CLASSNAME} ${prefix} ${prefix}-${name}`
+          staticClass: `${FONT_ICON_CLASSNAME} ${family} ${prefix}-${name}`
         })
       )
     }
