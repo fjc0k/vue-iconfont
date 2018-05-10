@@ -1,6 +1,6 @@
 /*!
  * vue-iconfont v2.0.0
- * (c) 2017-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
+ * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
 var extendData = (function (data, source) {
@@ -8,7 +8,7 @@ var extendData = (function (data, source) {
       attrs = data.attrs;
   var _staticClass = source.staticClass,
       _attrs = source.attrs;
-  data.staticClass = (staticClass ? staticClass + " " : '') + _staticClass;
+  data.staticClass = _staticClass + (staticClass ? " " + staticClass : '');
 
   if (_attrs) {
     Object.keys(_attrs).forEach(function (key) {
@@ -19,26 +19,31 @@ var extendData = (function (data, source) {
   return data;
 });
 
-var injectSVGFontStyle = (function (klass) {
-  document.write("<style>." + klass + "{display:inline-block;width:1em;height:1em;fill:currentColor;vertical-align:-0.1em;font-size:1em;}</style>");
-});
+function injectStyle(style) {
+  document.write("<style>" + style + "</style>");
+}
 
-var injectFontClassStyle = (function (klass, fontFamily) {
-  document.write("<style>." + klass + "{font-family:\"" + fontFamily + "\"!important;font-size:1em;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}</style>");
-});
+function injectClassFontStyle(klass, fontFamily) {
+  injectStyle("." + klass + "{font-family:\"" + fontFamily + "\"!important;font-size:1em;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}");
+}
+function injectSVGFontStyle(klass) {
+  injectStyle("." + klass + "{display:inline-block;width:1em;height:1em;fill:currentColor;vertical-align:-0.11em;font-size:1em;}");
+}
 
-var FONT_CLASS = 'font-class';
-var SYMBOL = 'symbol';
-var FONT_CLASS_CLASSNAME = '__vi-font-class__';
-var SVG_FONT_CLASSNAME = '__vi-svg-font__';
-var fontClassStyleInjected = false;
+var FONT_ICON = 'font';
+var SVG_ICON = 'svg';
+var FONT_ICON_CLASSNAME = '__font_icon__';
+var SVG_ICON_CLASSNAME = '__svg_icon__';
+var ICON_COMPONENTS_REGISTER = '__icon_components_register__';
+
+var classFontStyleInjected = Object.create(null);
 var svgFontStyleInjected = false;
 var getIcon = (function (_temp) {
   var _ref = _temp === void 0 ? {} : _temp,
       _ref$prefix = _ref.prefix,
       defaultPrefix = _ref$prefix === void 0 ? 'icon' : _ref$prefix,
       _ref$type = _ref.type,
-      defaultType = _ref$type === void 0 ? 'font-class' : _ref$type;
+      defaultType = _ref$type === void 0 ? FONT_ICON : _ref$type;
 
   return {
     name: 'Icon',
@@ -53,7 +58,7 @@ var getIcon = (function (_temp) {
         type: String,
         default: defaultType,
         validator: function validator(type) {
-          return [FONT_CLASS, SYMBOL].indexOf(type) >= 0;
+          return [FONT_ICON, SVG_ICON].indexOf(type) >= 0;
         }
       }
     },
@@ -66,22 +71,23 @@ var getIcon = (function (_temp) {
           type = _ref2$props.type;
       if (!name) return null; // font-class 引用
 
-      if (type === FONT_CLASS) {
-        // 插入 font-class 的样式
-        if (!fontClassStyleInjected) {
-          fontClassStyleInjected = true;
+      if (type === FONT_ICON) {
+        var classFontClass = "" + FONT_ICON_CLASSNAME + prefix; // 插入 font-class 的样式
+
+        if (!classFontStyleInjected[prefix]) {
+          classFontStyleInjected[prefix] = true;
 
           if (parent._isMounted) {
-            injectFontClassStyle(FONT_CLASS_CLASSNAME, prefix);
+            injectClassFontStyle(classFontClass, prefix);
           } else {
             parent.$once('hook:mounted', function () {
-              injectFontClassStyle(FONT_CLASS_CLASSNAME, prefix);
+              injectClassFontStyle(classFontClass, prefix);
             });
           }
         }
 
         return h('i', extendData(data, {
-          staticClass: prefix + " " + prefix + "-" + name + " " + FONT_CLASS_CLASSNAME
+          staticClass: classFontClass + " " + prefix + " " + prefix + "-" + name
         }));
       } // 插入 SVG 字体的样式
 
@@ -90,17 +96,17 @@ var getIcon = (function (_temp) {
         svgFontStyleInjected = true;
 
         if (parent._isMounted) {
-          injectSVGFontStyle(SVG_FONT_CLASSNAME);
+          injectSVGFontStyle(SVG_ICON_CLASSNAME);
         } else {
           parent.$once('hook:mounted', function () {
-            injectSVGFontStyle(SVG_FONT_CLASSNAME);
+            injectSVGFontStyle(SVG_ICON_CLASSNAME);
           });
         }
       } // symbol 引用
 
 
       return h('svg', extendData(data, {
-        staticClass: SVG_FONT_CLASSNAME,
+        staticClass: SVG_ICON_CLASSNAME,
         attrs: {
           'aria-hidden': true
         }
@@ -110,12 +116,11 @@ var getIcon = (function (_temp) {
         }
       })]);
     },
-    FONT_CLASS: FONT_CLASS,
-    SYMBOL: SYMBOL
+    FONT_ICON: FONT_ICON,
+    SVG_ICON: SVG_ICON
   };
 });
 
-var REG_KEY = '__registeredIconComponents';
 var Icon = getIcon();
 
 Icon.install = function (Vue, options) {
@@ -123,15 +128,18 @@ Icon.install = function (Vue, options) {
     options = {};
   }
 
-  if (!Vue[REG_KEY]) {
-    Vue[REG_KEY] = Object.create(null);
-  }
+  if (!Array.isArray(options)) options = [options];
+  options.forEach(function ($options) {
+    if (!Vue[ICON_COMPONENTS_REGISTER]) {
+      Vue[ICON_COMPONENTS_REGISTER] = Object.create(null);
+    }
 
-  var key = options.tag + "/" + options.type + "/" + options.prefix;
-  if (key in Vue[REG_KEY]) return;
-  Vue[REG_KEY][key] = true;
-  var Icon = getIcon(options);
-  Vue.component(options.tag || Icon.name, Icon);
+    var key = $options.tag + "/" + $options.type + "/" + $options.prefix;
+    if (key in Vue[ICON_COMPONENTS_REGISTER]) return;
+    Vue[ICON_COMPONENTS_REGISTER][key] = true;
+    var Icon = getIcon($options);
+    Vue.component($options.tag || Icon.name, Icon);
+  });
 };
 
 export default Icon;
