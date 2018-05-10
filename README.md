@@ -1,45 +1,22 @@
-# vue-iconfont
+# Vue Iconfont
 
-iconfont.cn --> Symbol引用(SVG字体) --> Vue组件
+[![Travis](https://travis-ci.org/fjc0k/vue-iconfont.svg?branch=master)](https://travis-ci.org/fjc0k/vue-iconfont)
+[![codecov](https://codecov.io/gh/fjc0k/vue-iconfont/branch/master/graph/badge.svg)](https://codecov.io/gh/fjc0k/vue-iconfont)
+[![minified size](https://img.shields.io/badge/minified%20size-979%20B-blue.svg?MIN)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
+[![minzipped size](https://img.shields.io/badge/minzipped%20size-581%20B-blue.svg?MZIP)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
 
-## 如何使用
-
-### 安装
+Intelligently merge data for Vue render functions.
 
 ```shell
 yarn add vue-iconfont
 ```
-或
-```shell
-npm install vue-iconfont -S
-```
 
-### 使用
+CDN: [jsDelivr](//www.jsdelivr.com/package/npm/vue-iconfont) | [UNPKG](//unpkg.com/vue-iconfont/) (Avaliable as `window.VueIconfont`)
 
-`main.js`：
 
-```javascript
-import './assets/iconfont.js'; // Symbol 代码
-import 'vue-iconfont/style/icon.css'; // 样式文件
-import vueIconfont from 'vue-iconfont'; // icon 组件
 
-Vue.use(vueIconfont);
-// 或
-Vue.use(vueIconfont, {
-  label: 'icon' // label 默认是 icon
-});
-// 或
-Vue.component('icon', vueIconfont);
-```
-
-`App.vue`：
-
-```html
-<!-- // 不指定 size，图标大小依父元素而定 -->
-<icon name="star"></icon>
-
-<!-- // 指定 size，图标大小自己做主，单位：px -->
-<icon name="star" :size="20"></icon>
-<!-- // 这等价于 -->
-<icon name="star" :width="20" :height="20"></icon>
-```
+1. 全局替换 `vue-iconfont` 为 npm 包名称，
+替换 `vue-iconfont` 为 github 名称，
+相同则 `(f\-)?vue-iconfont`，..
+替换 `VueIconfont` 为模块名称
+2. 执行 `release`
