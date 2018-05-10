@@ -1,5 +1,5 @@
 /*!
- * vue-iconfont v2.1.0
+ * vue-iconfont v2.1.1
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
@@ -34,7 +34,6 @@ var FONT_ICON = 'font';
 var SVG_ICON = 'svg';
 var FONT_ICON_CLASSNAME = '__font_icon__';
 var SVG_ICON_CLASSNAME = '__svg_icon__';
-var ICON_COMPONENTS_REGISTER = '__icon_components_register__';
 
 var fontIconStyleInjected = false;
 var svgIconStyleInjected = false;
@@ -134,13 +133,6 @@ Icon.install = function (Vue, options) {
 
   if (!Array.isArray(options)) options = [options];
   options.forEach(function ($options) {
-    if (!Vue[ICON_COMPONENTS_REGISTER]) {
-      Vue[ICON_COMPONENTS_REGISTER] = Object.create(null);
-    }
-
-    var key = $options.tag + "/" + $options.type + "/" + $options.prefix;
-    if (key in Vue[ICON_COMPONENTS_REGISTER]) return;
-    Vue[ICON_COMPONENTS_REGISTER][key] = true;
     var Icon = getIcon($options);
     Vue.component($options.tag || Icon.name, Icon);
   });
