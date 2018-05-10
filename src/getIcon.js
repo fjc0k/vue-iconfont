@@ -2,8 +2,8 @@ import extendData from './extendData'
 import { injectSVGFontStyle, injectClassFontStyle } from './injectStyle'
 import { FONT_ICON, SVG_ICON, FONT_ICON_CLASSNAME, SVG_ICON_CLASSNAME } from './constant'
 
-let classFontStyleInjected = Object.create(null)
-let svgFontStyleInjected = false
+let fontIconStyleInjected = false
+let svgIconStyleInjected = false
 
 export default ({
   prefix: defaultPrefix = 'icon',
@@ -31,16 +31,14 @@ export default ({
 
     // font-class 引用
     if (type === FONT_ICON) {
-      const classFontClass = `${FONT_ICON_CLASSNAME}${prefix}`
-
       // 插入 font-class 的样式
-      if (!classFontStyleInjected[prefix]) {
-        classFontStyleInjected[prefix] = true
+      if (!fontIconStyleInjected) {
+        fontIconStyleInjected = true
         if (parent._isMounted) {
-          injectClassFontStyle(classFontClass, prefix)
+          injectClassFontStyle(FONT_ICON_CLASSNAME)
         } else {
           parent.$once('hook:mounted', () => {
-            injectClassFontStyle(classFontClass, prefix)
+            injectClassFontStyle(FONT_ICON_CLASSNAME)
           })
         }
       }
@@ -48,14 +46,14 @@ export default ({
       return h(
         'i',
         extendData(data, {
-          staticClass: `${classFontClass} ${prefix} ${prefix}-${name}`
+          staticClass: `${FONT_ICON_CLASSNAME} ${prefix} ${prefix}-${name}`
         })
       )
     }
 
     // 插入 SVG 字体的样式
-    if (!svgFontStyleInjected) {
-      svgFontStyleInjected = true
+    if (!svgIconStyleInjected) {
+      svgIconStyleInjected = true
       if (parent._isMounted) {
         injectSVGFontStyle(SVG_ICON_CLASSNAME)
       } else {
@@ -78,9 +76,5 @@ export default ({
         }
       })
     ])
-  },
-
-  FONT_ICON,
-
-  SVG_ICON
+  }
 })
