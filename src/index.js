@@ -1,77 +1,33 @@
-export default {
-  name: 'Icon',
+import getIcon from './getIcon'
+import { ICON_COMPONENTS_REGISTER } from './constant'
 
-  functional: true,
+const Icon = getIcon()
 
-  props: {
-    name: String,
-    family: {
-      type: String,
-      default: 'iconfont'
-    },
-    prefix: {
-      type: String,
-      default: 'icon'
-    }
-  },
-
-  render(h, { data, props: { name, family, prefix }, children }) {
-    const nameIsValid = Boolean(name)
-    const isSVGType = nameIsValid && name[0] === '$'
-    const isClassType = nameIsValid && !isSVGType
-    const isUnicodeType = !nameIsValid && Boolean(children)
-    const isNullType = !nameIsValid && !isUnicodeType
-
-    if (isNullType) return null
-
-    // unicode 引用
-    if (isUnicodeType) {
-      return h(
-        'i',
-        extendData(data, {
-          staticClass: family
-        }),
-        children
-      )
-    }
-
-    name = isClassType ? name : name.substr(1)
-
-    // font-class 引用
-    if (isClassType) {
-      return h(
-        'i',
-        extendData(data, {
-          staticClass: `${family} ${prefix}-${name}`
-        })
-      )
-    }
-
-    // symbol 引用
-    return h('svg', extendData(data, {
-      attrs: {
-        'aria-hidden': true
-      },
-      domProps: {
-        innerHTML: `<use xlink:href="#${prefix}-${name}"></use>`
-      }
-    }))
+Icon.install = (Vue, options) => {
+  if (!options || typeof options !== 'object') {
+    options = {}
   }
+
+  if (!Array.isArray(options)) options = [options]
+
+  options.forEach($options => {
+    if (!Vue[ICON_COMPONENTS_REGISTER]) {
+      Vue[ICON_COMPONENTS_REGISTER] = Object.create(null)
+    }
+
+    const key = `${$options.tag}/${$options.type}/${$options.prefix}`
+
+    if (key in Vue[ICON_COMPONENTS_REGISTER]) return
+
+    Vue[ICON_COMPONENTS_REGISTER][key] = true
+
+    const Icon = getIcon($options)
+
+    Vue.component(
+      $options.tag || Icon.name,
+      Icon
+    )
+  })
 }
 
-function extendData(data, source) {
-  const { staticClass, attrs } = data
-  const { staticClass: _staticClass, attrs: _attrs } = source
-
-  if (_staticClass) {
-    data.staticClass = (staticClass ? `${staticClass} ` : '') + _staticClass
-  }
-
-  if (_attrs) {
-    Object.keys(_attrs).forEach(key => {
-      data.attrs[key] = attrs[key] || _attrs[key]
-    })
-  }
-
-  return data
-}
+export default Icon
