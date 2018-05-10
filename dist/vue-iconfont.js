@@ -1,5 +1,5 @@
 /*!
- * vue-iconfont v2.0.0
+ * vue-iconfont v2.0.1
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
@@ -29,8 +29,8 @@
     document.write("<style>" + style + "</style>");
   }
 
-  function injectClassFontStyle(klass, fontFamily) {
-    injectStyle("." + klass + "{font-family:\"" + fontFamily + "\"!important;font-size:1em;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}");
+  function injectClassFontStyle(klass) {
+    injectStyle("." + klass + "{font-size:1em;}");
   }
   function injectSVGFontStyle(klass) {
     injectStyle("." + klass + "{display:inline-block;width:1em;height:1em;fill:currentColor;vertical-align:-0.11em;font-size:1em;}");
@@ -42,8 +42,8 @@
   var SVG_ICON_CLASSNAME = '__svg_icon__';
   var ICON_COMPONENTS_REGISTER = '__icon_components_register__';
 
-  var classFontStyleInjected = Object.create(null);
-  var svgFontStyleInjected = false;
+  var fontIconStyleInjected = false;
+  var svgIconStyleInjected = false;
   var getIcon = (function (_temp) {
     var _ref = _temp === void 0 ? {} : _temp,
         _ref$prefix = _ref.prefix,
@@ -78,28 +78,27 @@
         if (!name) return null; // font-class 引用
 
         if (type === FONT_ICON) {
-          var classFontClass = "" + FONT_ICON_CLASSNAME + prefix; // 插入 font-class 的样式
-
-          if (!classFontStyleInjected[prefix]) {
-            classFontStyleInjected[prefix] = true;
+          // 插入 font-class 的样式
+          if (!fontIconStyleInjected) {
+            fontIconStyleInjected = true;
 
             if (parent._isMounted) {
-              injectClassFontStyle(classFontClass, prefix);
+              injectClassFontStyle(FONT_ICON_CLASSNAME);
             } else {
               parent.$once('hook:mounted', function () {
-                injectClassFontStyle(classFontClass, prefix);
+                injectClassFontStyle(FONT_ICON_CLASSNAME);
               });
             }
           }
 
           return h('i', extendData(data, {
-            staticClass: classFontClass + " " + prefix + " " + prefix + "-" + name
+            staticClass: FONT_ICON_CLASSNAME + " " + prefix + " " + prefix + "-" + name
           }));
         } // 插入 SVG 字体的样式
 
 
-        if (!svgFontStyleInjected) {
-          svgFontStyleInjected = true;
+        if (!svgIconStyleInjected) {
+          svgIconStyleInjected = true;
 
           if (parent._isMounted) {
             injectSVGFontStyle(SVG_ICON_CLASSNAME);
@@ -121,9 +120,7 @@
             'xlink:href': "#" + prefix + "-" + name
           }
         })]);
-      },
-      FONT_ICON: FONT_ICON,
-      SVG_ICON: SVG_ICON
+      }
     };
   });
 
