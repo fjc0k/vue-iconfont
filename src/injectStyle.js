@@ -2,8 +2,8 @@ function injectStyle(style) {
   document.write(`<style>${style}</style>`)
 }
 
-export function injectClassFontStyle(klass, fontFamily) {
-  injectStyle(`.${klass}{font-family:"${fontFamily}"!important;font-size:1em;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}`)
+export function injectClassFontStyle(klass) {
+  injectStyle(`.${klass}{font-size:1em;}`)
 }
 
 export function injectSVGFontStyle(klass) {
