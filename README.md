@@ -2,8 +2,8 @@
 
 [![Travis](https://travis-ci.org/fjc0k/vue-iconfont.svg?branch=master)](https://travis-ci.org/fjc0k/vue-iconfont)
 [![codecov](https://codecov.io/gh/fjc0k/vue-iconfont/branch/master/graph/badge.svg)](https://codecov.io/gh/fjc0k/vue-iconfont)
-[![minified size](https://img.shields.io/badge/minified%20size-1.67%20KB-blue.svg?MIN)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
-[![minzipped size](https://img.shields.io/badge/minzipped%20size-893%20B-blue.svg?MZIP)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
+[![minified size](https://img.shields.io/badge/minified%20size-1.69%20KB-blue.svg?MIN)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
+[![minzipped size](https://img.shields.io/badge/minzipped%20size-911%20B-blue.svg?MZIP)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
 
 更优雅地使用 [Iconfont.cn](http://iconfont.cn)，同时支持 `font-class 引入` 和 `symbol 引入`。
 

@@ -1,5 +1,5 @@
 /*!
- * vue-iconfont v2.1.1
+ * vue-iconfont v2.2.0
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
@@ -80,13 +80,15 @@
             prefix = _ref2$props.prefix,
             _ref2$props$family = _ref2$props.family,
             family = _ref2$props$family === void 0 ? prefix : _ref2$props$family,
-            type = _ref2$props.type;
-        if (!name) return null; // font-class 引用
+            type = _ref2$props.type,
+            children = _ref2.children;
 
+        // font-class 引用
         if (type === FONT_ICON) {
           // 插入 font-class 的样式
           if (!fontIconStyleInjected) {
             fontIconStyleInjected = true;
+            /* istanbul ignore if */
 
             if (parent._isMounted) {
               injectClassFontStyle(FONT_ICON_CLASSNAME);
@@ -98,13 +100,14 @@
           }
 
           return h('i', extendData(data, {
-            staticClass: FONT_ICON_CLASSNAME + " " + family + " " + prefix + "-" + name
-          }));
+            staticClass: FONT_ICON_CLASSNAME + " " + family + (name ? " " + (prefix ? prefix + '-' : '') + name : '')
+          }), children);
         } // 插入 SVG 字体的样式
 
 
         if (!svgIconStyleInjected) {
           svgIconStyleInjected = true;
+          /* istanbul ignore if */
 
           if (parent._isMounted) {
             injectSVGFontStyle(SVG_ICON_CLASSNAME);
