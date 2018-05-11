@@ -76,6 +76,7 @@
     "codecov": "^3.0.0",
     "eslint": "^4.19.1",
     "husky": "^1.0.0-rc.4",
+    "ionicons": "^4.0.0",
     "jest": "^22.4.3",
     "lint-staged": "^7.1.0",
     "standard-version": "^4.3.0",

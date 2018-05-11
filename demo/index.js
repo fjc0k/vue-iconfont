@@ -11,6 +11,12 @@ import './iconfont/iconfont.js'
 // 引入 fontawesome5
 import './fontawesome5/css/fontawesome-all.css'
 
+// 引入 ionicons4
+import 'ionicons/dist/css/ionicons.min.css'
+
+// 引入 material-design-icons3
+import './material-design-icons3/material-icons.css'
+
 Vue.use(VueIconfont, [
   // 定义 v-icon 组件以使用 font-class 图标
   {
@@ -35,6 +41,29 @@ Vue.use(VueIconfont, [
     tag: 'fab-icon',
     family: 'fab',
     prefix: 'fa'
+  },
+
+  {
+    tag: 'ion-icon',
+    family: 'ion',
+    prefix: 'ion-ios'
+  },
+
+  {
+    tag: 'ion-md-icon',
+    family: 'ion',
+    prefix: 'ion-md'
+  },
+
+  {
+    tag: 'ion-logo-icon',
+    family: 'ion',
+    prefix: 'ion-logo'
+  },
+
+  {
+    tag: 'md-icon',
+    family: 'material-icons'
   }
 ])
 
