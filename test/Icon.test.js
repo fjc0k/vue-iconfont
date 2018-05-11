@@ -8,13 +8,6 @@ const assertHTML = (template, html) => expect(
   }).html()
 ).toBe(html)
 
-test('没引入图标时渲染为空白', () => {
-  assertHTML(
-    '<icon />',
-    undefined
-  )
-})
-
 test('正确渲染 class-icon', () => {
   assertHTML(
     '<icon name="ok" />',
