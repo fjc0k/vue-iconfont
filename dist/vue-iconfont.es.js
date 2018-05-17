@@ -1,5 +1,5 @@
 /*!
- * vue-iconfont v2.3.0
+ * vue-iconfont v2.3.1
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
@@ -141,5 +141,6 @@ Icon.install = function (Vue, options) {
   });
 };
 
+Icon.getIcon = getIcon;
+
 export default Icon;
-export { getIcon };
