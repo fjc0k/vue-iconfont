@@ -18,8 +18,7 @@ Icon.install = (Vue, options) => {
   })
 }
 
+Icon.getIcon = getIcon
+
 export default Icon
 
-export {
-  getIcon
-}
