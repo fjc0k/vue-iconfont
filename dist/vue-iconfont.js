@@ -1,5 +1,5 @@
 /*!
- * vue-iconfont v2.4.1
+ * vue-iconfont v2.5.0
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
