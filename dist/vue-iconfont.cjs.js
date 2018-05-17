@@ -1,25 +1,13 @@
 /*!
- * vue-iconfont v2.3.1
+ * vue-iconfont v2.4.0
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
 'use strict';
 
-var extendData = (function (data, source) {
-  var staticClass = data.staticClass,
-      attrs = data.attrs;
-  var _staticClass = source.staticClass,
-      _attrs = source.attrs;
-  data.staticClass = _staticClass + (staticClass ? " " + staticClass : '');
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-  if (_attrs) {
-    Object.keys(_attrs).forEach(function (key) {
-      data.attrs[key] = attrs[key] || _attrs[key];
-    });
-  }
-
-  return data;
-});
+var extendData = _interopDefault(require('vue-merge-data'));
 
 function injectStyle(style) {
   document.write("<style>" + style + "</style>");
@@ -45,10 +33,14 @@ var getIcon = (function (_temp) {
       defaultPrefix = _ref$prefix === void 0 ? 'icon' : _ref$prefix,
       defaultFamily = _ref.family,
       _ref$type = _ref.type,
-      defaultType = _ref$type === void 0 ? FONT_ICON : _ref$type;
+      defaultType = _ref$type === void 0 ? FONT_ICON : _ref$type,
+      _ref$name = _ref.name,
+      defaultName = _ref$name === void 0 ? 'Icon' : _ref$name,
+      _ref$data = _ref.data,
+      extraData = _ref$data === void 0 ? {} : _ref$data;
 
   return {
-    name: 'Icon',
+    name: defaultName,
     functional: true,
     props: {
       name: String,
@@ -95,7 +87,7 @@ var getIcon = (function (_temp) {
           }
         }
 
-        return h('i', extendData(data, {
+        return h('i', extendData(data, extraData, {
           staticClass: FONT_ICON_CLASSNAME + " " + family + (name ? " " + (prefix ? prefix + '-' : '') + name : '')
         }), children);
       } // 插入 SVG 字体的样式
@@ -115,7 +107,7 @@ var getIcon = (function (_temp) {
       } // symbol 引用
 
 
-      return h('svg', extendData(data, {
+      return h('svg', extendData(data, extraData, {
         staticClass: SVG_ICON_CLASSNAME,
         attrs: {
           'aria-hidden': true
@@ -138,8 +130,8 @@ Icon.install = function (Vue, options) {
 
   if (!Array.isArray(options)) options = [options];
   options.forEach(function ($options) {
-    var Icon = getIcon($options);
-    Vue.component($options.tag || Icon.name, Icon);
+    var IconComponent = getIcon($options);
+    Vue.component($options.tag || Icon.name, IconComponent);
   });
 };
 
