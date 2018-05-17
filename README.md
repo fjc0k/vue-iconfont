@@ -40,13 +40,13 @@ Vue.use(VueIconfont/*, options*/)
 
 #### options
 
-选项 | 类型 | 默认值 | 说明
---- | --|--|--
-tag | `String` | `icon` | 图标组件的标签。
-type | `font` &#124; `svg` | `font` | `font`：表示用 font-class 引入的字体图标。<br />`svg`：表示用 symbol 引入的 SVG 图标。
-prefix | `String` | `icon` | 表示类名前缀或 SVG 图标名称前缀。
-family | `String` | `= prefix` | 仅当 `type` 为 `font` 时有效，表示设置了 `font-family` 样式的类。
-
+选项   | 类型                | 默认值     | 说明
+-------|---------------------|------------|------------------------------------------------------------------------------------
+tag    | `String`            | `icon`     | 图标组件的标签。
+type   | `font` &#124; `svg` | `font`     | `font`：表示用 font-class 引入的字体图标。<br />`svg`：表示用 symbol 引入的 SVG 图标。
+prefix | `String`            | `icon`     | 表示类名前缀或 SVG 图标名称前缀。
+family | `String`            | = `prefix` | 仅当 `type` 为 `font` 时有效，表示设置了 `font-family` 样式的类。
+data   | `Object`            | `{}`       | 将与 Vue render 函数的 data 合并。
 
 ## 完整实例
 

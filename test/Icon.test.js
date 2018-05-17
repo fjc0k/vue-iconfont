@@ -29,18 +29,3 @@ test('正确渲染 svg-icon', () => {
     `<svg aria-hidden="true" class="${SVG_ICON_CLASSNAME}"><use xlink:href="#x-icon-right"></use></svg>`
   )
 })
-
-test('正确合并 class', () => {
-  assertHTML(
-    '<icon class="y-icon" name="ok" />',
-    `<i class="${FONT_ICON_CLASSNAME} icon icon-ok y-icon"></i>`
-  )
-  assertHTML(
-    '<icon class="y-icon" prefix="x-icon" name="ok" />',
-    `<i class="${FONT_ICON_CLASSNAME} x-icon x-icon-ok y-icon"></i>`
-  )
-  assertHTML(
-    '<icon class="x-icon" name="ok" type="svg" />',
-    `<svg aria-hidden="true" class="${SVG_ICON_CLASSNAME} x-icon"><use xlink:href="#icon-ok"></use></svg>`
-  )
-})

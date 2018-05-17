@@ -8834,9 +8834,9 @@ vue-loader@^14.1.1:
     vue-style-loader "^4.0.1"
     vue-template-es2015-compiler "^1.6.0"
 
-vue-merge-data@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/vue-merge-data/-/vue-merge-data-0.1.3.tgz#6c0a31fd2ef78efc708be436759792604071103e"
+vue-merge-data@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/vue-merge-data/-/vue-merge-data-0.2.0.tgz#4875c9862c47d0ad2ea3e50b9554d03e17802df6"
 
 vue-style-loader@^4.0.1:
   version "4.1.0"

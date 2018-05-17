@@ -8,9 +8,11 @@ let svgIconStyleInjected = false
 export default ({
   prefix: defaultPrefix = 'icon',
   family: defaultFamily,
-  type: defaultType = FONT_ICON
+  type: defaultType = FONT_ICON,
+  name: defaultName = 'Icon',
+  data: extraData = {}
 } = {}) => ({
-  name: 'Icon',
+  name: defaultName,
 
   functional: true,
 
@@ -50,7 +52,7 @@ export default ({
 
       return h(
         'i',
-        extendData(data, {
+        extendData(data, extraData, {
           staticClass: (
             `${FONT_ICON_CLASSNAME} ${family}` +
             (name ? ` ${prefix ? prefix + '-' : ''}${name}` : '')
@@ -75,7 +77,7 @@ export default ({
     }
 
     // symbol 引用
-    return h('svg', extendData(data, {
+    return h('svg', extendData(data, extraData, {
       staticClass: SVG_ICON_CLASSNAME,
       attrs: {
         'aria-hidden': true
