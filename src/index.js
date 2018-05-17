@@ -10,10 +10,10 @@ Icon.install = (Vue, options) => {
   if (!Array.isArray(options)) options = [options]
 
   options.forEach($options => {
-    const Icon = getIcon($options)
+    const IconComponent = getIcon($options)
     Vue.component(
       $options.tag || Icon.name,
-      Icon
+      IconComponent
     )
   })
 }
