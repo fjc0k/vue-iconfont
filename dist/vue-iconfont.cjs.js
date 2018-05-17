@@ -1,9 +1,11 @@
 /*!
- * vue-iconfont v2.2.0
+ * vue-iconfont v2.3.0
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
 'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 var extendData = (function (data, source) {
   var staticClass = data.staticClass,
@@ -143,4 +145,5 @@ Icon.install = function (Vue, options) {
   });
 };
 
-module.exports = Icon;
+exports.default = Icon;
+exports.getIcon = getIcon;

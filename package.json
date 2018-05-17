@@ -1,6 +1,6 @@
 {
   "name": "vue-iconfont",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "更优雅地使用 Iconfont.cn，同时支持 font-class 引入和 symbol 引入。",
   "license": "MIT",
   "sideEffects": false,

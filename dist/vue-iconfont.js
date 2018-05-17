@@ -1,13 +1,13 @@
 /*!
- * vue-iconfont v2.2.0
+ * vue-iconfont v2.3.0
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.VueIconfont = factory());
-}(this, (function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.VueIconfont = {})));
+}(this, (function (exports) { 'use strict';
 
   var extendData = (function (data, source) {
     var staticClass = data.staticClass,
@@ -147,6 +147,9 @@
     });
   };
 
-  return Icon;
+  exports.default = Icon;
+  exports.getIcon = getIcon;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 })));

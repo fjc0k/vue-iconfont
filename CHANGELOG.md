@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/fjc0k/vue-iconfont/compare/v2.2.0...v2.3.0) (2018-05-17)
+
+
+### Features
+
+* export getIcon ([9d27bee](https://github.com/fjc0k/vue-iconfont/commit/9d27bee))
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/fjc0k/vue-iconfont/compare/v2.1.1...v2.2.0) (2018-05-11)
 
