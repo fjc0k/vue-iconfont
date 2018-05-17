@@ -83,5 +83,8 @@
     "standard-version": "^4.3.0",
     "vue": "^2.5.16",
     "vue-template-compiler": "^2.5.16"
+  },
+  "dependencies": {
+    "vue-merge-data": "^0.1.3"
   }
 }

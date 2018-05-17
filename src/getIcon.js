@@ -1,4 +1,4 @@
-import extendData from './extendData'
+import extendData from 'vue-merge-data'
 import { injectSVGFontStyle, injectClassFontStyle } from './injectStyle'
 import { FONT_ICON, SVG_ICON, FONT_ICON_CLASSNAME, SVG_ICON_CLASSNAME } from './constant'
 
