@@ -2,8 +2,8 @@
 
 [![Travis](https://travis-ci.org/fjc0k/vue-iconfont.svg?branch=master)](https://travis-ci.org/fjc0k/vue-iconfont)
 [![codecov](https://codecov.io/gh/fjc0k/vue-iconfont/branch/master/graph/badge.svg)](https://codecov.io/gh/fjc0k/vue-iconfont)
-[![minified size](https://img.shields.io/badge/minified%20size-2.22%20KB-blue.svg?MIN)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
-[![minzipped size](https://img.shields.io/badge/minzipped%20size-1.13%20KB-blue.svg?MZIP)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
+[![minified size](https://img.shields.io/badge/minified%20size-2.73%20KB-blue.svg?MIN)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
+[![minzipped size](https://img.shields.io/badge/minzipped%20size-1.38%20KB-blue.svg?MZIP)](https://github.com/fjc0k/vue-iconfont/blob/master/dist/vue-iconfont.min.js)
 
 更优雅地使用 [Iconfont.cn](http://iconfont.cn)，同时支持 `font-class 引入` 和 `symbol 引入`。
 
@@ -44,9 +44,10 @@ Vue.use(VueIconfont/*, options*/)
 -------|---------------------|------------|------------------------------------------------------------------------------------
 tag    | `String`            | `icon`     | 图标组件的标签。
 type   | `font` &#124; `svg` | `font`     | `font`：表示用 font-class 引入的字体图标。<br />`svg`：表示用 symbol 引入的 SVG 图标。
-prefix | `String`            | `icon`     | 表示类名前缀或 SVG 图标名称前缀。
+prefix | `String`            | -     | 表示类名前缀或 SVG 图标名称前缀。
 family | `String`            | = `prefix` | 仅当 `type` 为 `font` 时有效，表示设置了 `font-family` 样式的类。
-data   | `Object`            | `{}`       | 将与 Vue render 函数的 data 合并。
+sprite   | `String`            | -       | 仅当 `type` 为 `svg` 时有效，表示 SVG Sprite，其会被自动加载，形如：`<svg><symbol id="ok">......</symbol></svg>`
+component | `{ name: String, 'props': Object, beforeRender: context => void }` | { name: 'Icon', 'props': {}, beforeRender: () => {} } | `name` 表示组件的 `name` 选项，`props` 表示组件的 `props` 选项，`beforeRender` 是一个函数，它接收 Vue 函数组件中 render 的 context，你可以对 context 施加改变。
 
 ## 完整实例
 

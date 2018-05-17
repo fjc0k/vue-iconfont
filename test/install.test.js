@@ -2,9 +2,18 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import Icon from '../src'
 import { FONT_ICON_CLASSNAME, SVG_ICON_CLASSNAME } from '../src/constant'
 
-const assertHTML = (template, options, html) => {
+const assertHTML = (template, html) => {
   const localVue = createLocalVue()
-  localVue.use(Icon, options)
+  localVue.use(Icon, [
+    {
+      tag: 'Icon',
+      type: 'font'
+    },
+    {
+      tag: 'SvgIcon',
+      type: 'svg'
+    }
+  ])
   expect(
     mount(
       { template },
@@ -13,34 +22,16 @@ const assertHTML = (template, options, html) => {
   ).toBe(html)
 }
 
-test('默认选项正确', () => {
+test('正确渲染 Font Icons', () => {
   assertHTML(
-    '<icon name="ok" />',
-    null,
-    `<i class="${FONT_ICON_CLASSNAME} icon icon-ok"></i>`
+    '<Icon name="ok" />',
+    `<i class="${FONT_ICON_CLASSNAME} ok"></i>`
   )
 })
 
-test('正确设置 tag', () => {
+test('正确渲染 SVG Icons', () => {
   assertHTML(
-    '<fa-icon name="ok" />',
-    { tag: 'fa-icon' },
-    `<i class="${FONT_ICON_CLASSNAME} icon icon-ok"></i>`
-  )
-})
-
-test('正确设置 prefix', () => {
-  assertHTML(
-    '<fa-icon name="ok" />',
-    { tag: 'fa-icon', prefix: 'fa-icon' },
-    `<i class="${FONT_ICON_CLASSNAME} fa-icon fa-icon-ok"></i>`
-  )
-})
-
-test('正确设置 type', () => {
-  assertHTML(
-    '<fa-icon name="ok" />',
-    { tag: 'fa-icon', prefix: 'fa-icon', type: 'svg' },
-    `<svg aria-hidden="true" class="${SVG_ICON_CLASSNAME}"><use xlink:href="#fa-icon-ok"></use></svg>`
+    '<SvgIcon name="ok" />',
+    `<svg aria-hidden="true" class="${SVG_ICON_CLASSNAME}"><use xlink:href="#ok"></use></svg>`
   )
 })

@@ -1,8 +1,7 @@
 import getIcon from './getIcon'
 
-const Icon = getIcon()
-
-Icon.install = (Vue, options) => {
+getIcon.install = (Vue, options) => {
+  /* istanbul ignore if */
   if (!options || typeof options !== 'object') {
     options = {}
   }
@@ -10,15 +9,13 @@ Icon.install = (Vue, options) => {
   if (!Array.isArray(options)) options = [options]
 
   options.forEach($options => {
-    const IconComponent = getIcon($options)
+    const Icon = getIcon($options)
     Vue.component(
       $options.tag || Icon.name,
-      IconComponent
+      Icon
     )
   })
 }
 
-Icon.getIcon = getIcon
-
-export default Icon
+export default getIcon
 
