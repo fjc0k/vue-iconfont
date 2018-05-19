@@ -22,7 +22,7 @@ const assertHTML = (template, html) => expect(
           props: {
             size: String
           },
-          beforeRender({ data, props: { size } }) {
+          beforeRender(h, { data, props: { size } }) {
             data.class = {
               ...data.class,
               [size]: true

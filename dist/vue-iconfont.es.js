@@ -1,5 +1,5 @@
 /*!
- * vue-iconfont v2.5.0
+ * vue-iconfont v2.5.1
  * (c) 2018-present fjc0k <fjc0kb@gmail.com> (https://github.com/fjc0k)
  * Released under the MIT License.
  */
@@ -21,6 +21,32 @@ function _extends() {
   };
 
   return _extends.apply(this, arguments);
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
 }
 
 var prepend = (function (target, element) {
@@ -84,24 +110,30 @@ var parentMounted = function parentMounted(parent, callback) {
   }
 };
 
-var getIcon = (function (_temp) {
-  var _ref = _temp === void 0 ? {} : _temp,
-      _ref$prefix = _ref.prefix,
-      prefix = _ref$prefix === void 0 ? '' : _ref$prefix,
-      _ref$family = _ref.family,
-      family = _ref$family === void 0 ? prefix : _ref$family,
-      _ref$type = _ref.type,
-      type = _ref$type === void 0 ? SVG_ICON : _ref$type,
-      sprite = _ref.sprite,
-      _ref$component = _ref.component;
+var getIcon = (function (_ref) {
+  if (_ref === void 0) {
+    _ref = {};
+  }
 
-  _ref$component = _ref$component === void 0 ? {} : _ref$component;
-  var _ref$component$name = _ref$component.name,
-      componentName = _ref$component$name === void 0 ? 'Icon' : _ref$component$name,
-      _ref$component$props = _ref$component.props,
-      extraProps = _ref$component$props === void 0 ? {} : _ref$component$props,
-      beforeRender = _ref$component.beforeRender;
-  return {
+  var _ref2 = _ref,
+      _ref2$prefix = _ref2.prefix,
+      prefix = _ref2$prefix === void 0 ? '' : _ref2$prefix,
+      _ref2$family = _ref2.family,
+      family = _ref2$family === void 0 ? prefix : _ref2$family,
+      _ref2$type = _ref2.type,
+      type = _ref2$type === void 0 ? SVG_ICON : _ref2$type,
+      sprite = _ref2.sprite,
+      _ref2$component = _ref2.component;
+  _ref2$component = _ref2$component === void 0 ? {} : _ref2$component;
+
+  var _ref2$component$name = _ref2$component.name,
+      componentName = _ref2$component$name === void 0 ? 'Icon' : _ref2$component$name,
+      _ref2$component$props = _ref2$component.props,
+      extraProps = _ref2$component$props === void 0 ? {} : _ref2$component$props,
+      beforeRender = _ref2$component.beforeRender,
+      componentOptions = _objectWithoutProperties(_ref2$component, ["name", "props", "beforeRender"]);
+
+  return _extends({}, componentOptions, {
     name: componentName,
     functional: true,
     props: _extends({}, extraProps, {
@@ -109,7 +141,11 @@ var getIcon = (function (_temp) {
     }),
     render: function render(h, ctx) {
       if (typeof beforeRender === 'function') {
-        beforeRender(ctx);
+        var _h = beforeRender(h, ctx);
+
+        if (typeof _h === 'function') {
+          h = _h;
+        }
       }
 
       var parent = ctx.parent,
@@ -160,7 +196,7 @@ var getIcon = (function (_temp) {
         }
       })]);
     }
-  };
+  });
 });
 
 getIcon.install = function (Vue, options) {

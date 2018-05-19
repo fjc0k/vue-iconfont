@@ -24,9 +24,12 @@ export default ({
   component: {
     name: componentName = 'Icon',
     props: extraProps = {},
-    beforeRender
+    beforeRender,
+    ...componentOptions
   } = {}
 } = {}) => ({
+  ...componentOptions,
+
   name: componentName,
 
   functional: true,
@@ -38,7 +41,10 @@ export default ({
 
   render(h, ctx) {
     if (typeof beforeRender === 'function') {
-      beforeRender(ctx)
+      const _h = beforeRender(h, ctx)
+      if (typeof _h === 'function') {
+        h = _h
+      }
     }
 
     const { parent, data, props: { name }, children } = ctx
